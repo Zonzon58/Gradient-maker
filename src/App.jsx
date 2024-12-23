@@ -1,6 +1,11 @@
 import Gradient from "./components/Gradient";
+import { useSelector } from "react-redux";
+import ColorInput from "./components/inputs/ColorInput";
 
 function App() {
+  const gradientValues = useSelector((state) => state.gradient);
+  console.log(gradientValues);
+
   return (
     <div className="relative text-slate-100 max-w-xl mx-auto mt-20 p-4 border border-slate-400 flex">
       <div className="w-1/2 p-4 pr-8">
@@ -8,8 +13,9 @@ function App() {
         <p className="text-center mb-6">Bring style to your apps.</p>
         <p className="mb-1">Colors, min 2, max 5.</p>
         <div className="flex mb-2">
-          <input type="color" />
-          <input type="color" />
+          {gradientValues.colors.map((obj) => (
+            <ColorInput id={obj.id} color={obj.value} key={obj.id} />
+          ))}
         </div>
         <div className="mb-5">
           <button>+</button>
@@ -23,7 +29,7 @@ function App() {
         {/* RangeColor */}
 
         <p>Gradient global angle</p>
-        { /* RangeAngle */}
+        {/* RangeAngle */}
 
         {/* OpenModalBtn */}
       </div>
