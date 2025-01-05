@@ -20,13 +20,25 @@ angle: 60
 export const gradientSlice = createSlice({
   name: "gradient",
   initialState,
-  reducer: {
+  reducers: {
     updateColorValue: (state, action) => {
       const currentColor = state.colors.find(color => color.id === action.payload.id)
       currentColor.value = action.payload.value
     },
 
-  }
-})
-export const{ updateColorValue} = gradientSlice.actions
+    addColor: (state, action) => {
+      if(state.colors.length === 5) return
+
+      state.colors.push({
+        id: state.colors[state.colors.length - 1].id + 1, value: "#111", position: 50
+      })
+    },
+      removeColor: (state, action) =>{
+        if(state.colors.length === 2) return state.colors.pop()
+      },
+    }
+
+  })
+
+export const{ updateColorValue, addColor, removeColor} = gradientSlice.actions
 export default gradientSlice.reducer

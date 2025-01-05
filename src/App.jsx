@@ -1,6 +1,7 @@
 import Gradient from "./components/Gradient";
 import { useSelector } from "react-redux";
 import ColorInput from "./components/inputs/ColorInput";
+import AddRemoveColor from "./components/AddRemoveColor";
 
 function App() {
   const gradientValues = useSelector((state) => state.gradient);
@@ -18,8 +19,8 @@ function App() {
           ))}
         </div>
         <div className="mb-5">
-          <button>+</button>
-          <button>-</button>
+          <AddRemoveColor action={"remove"} texte={"-"}/>
+          <AddRemoveColor action={"add"} texte={"+"}/>
         </div>
 
         <p>Pick an change a color's position</p>
